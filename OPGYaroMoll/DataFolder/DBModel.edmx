@@ -51,6 +51,7 @@
           <Property Name="DatePerformance" Type="datetime" Nullable="false" />
           <Property Name="TicketPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="IdArtists" Type="int" Nullable="false" />
+          <Property Name="IdArea" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -113,9 +114,7 @@
             <PropertyRef Name="IdVisitors" />
           </Key>
           <Property Name="IdVisitors" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstNameVisitors" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastNameVisitors" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MiddleNameVisitors" Type="nvarchar" MaxLength="50" />
+          <Property Name="ComleteNameVisitors" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailVisitors" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NumberPhoneVisitors" Type="nvarchar" MaxLength="15" />
           <Property Name="IdTicket" Type="int" Nullable="false" />
@@ -168,18 +167,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Area_Performance">
-          <End Role="Performance" Type="Self.Performance" Multiplicity="1" />
-          <End Role="Area" Type="Self.Area" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Performance">
-              <PropertyRef Name="IdPerformance" />
-            </Principal>
-            <Dependent Role="Area">
-              <PropertyRef Name="IdPerformance" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Artists_Specialty">
           <End Role="Specialty" Type="Self.Specialty" Multiplicity="1" />
           <End Role="Artists" Type="Self.Artists" Multiplicity="*" />
@@ -189,6 +176,18 @@
             </Principal>
             <Dependent Role="Artists">
               <PropertyRef Name="IdSpecialty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Performance_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Performance" Type="Self.Performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="IdArea" />
+            </Principal>
+            <Dependent Role="Performance">
+              <PropertyRef Name="IdArea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -313,13 +312,13 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK_Area_Performance" Association="Self.FK_Area_Performance">
-            <End Role="Performance" EntitySet="Performance" />
-            <End Role="Area" EntitySet="Area" />
-          </AssociationSet>
           <AssociationSet Name="FK_Artists_Specialty" Association="Self.FK_Artists_Specialty">
             <End Role="Specialty" EntitySet="Specialty" />
             <End Role="Artists" EntitySet="Artists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Performance_Area" Association="Self.FK_Performance_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Performance" EntitySet="Performance" />
           </AssociationSet>
           <AssociationSet Name="FK_Performance_Artists" Association="Self.FK_Performance_Artists">
             <End Role="Artists" EntitySet="Artists" />
@@ -372,7 +371,7 @@
           <Property Name="IdAddres" Type="Int32" Nullable="false" />
           <Property Name="IdPerformance" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Area_Address" FromRole="Area" ToRole="Address" />
-          <NavigationProperty Name="Performance" Relationship="Self.FK_Area_Performance" FromRole="Area" ToRole="Performance" />
+          <NavigationProperty Name="Performance" Relationship="Self.FK_Performance_Area" FromRole="Area" ToRole="Performance" />
         </EntityType>
         <EntityType Name="Artists">
           <Key>
@@ -403,7 +402,8 @@
           <Property Name="DatePerformance" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TicketPrice" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="IdArtists" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Area" Relationship="Self.FK_Area_Performance" FromRole="Performance" ToRole="Area" />
+          <Property Name="IdArea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Performance_Area" FromRole="Performance" ToRole="Area" />
           <NavigationProperty Name="Artists" Relationship="Self.FK_Performance_Artists" FromRole="Performance" ToRole="Artists" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Performance" FromRole="Performance" ToRole="Ticket" />
         </EntityType>
@@ -476,9 +476,7 @@
             <PropertyRef Name="IdVisitors" />
           </Key>
           <Property Name="IdVisitors" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstNameVisitors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastNameVisitors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MiddleNameVisitors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComleteNameVisitors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailVisitors" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NumberPhoneVisitors" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="IdTicket" Type="Int32" Nullable="false" />
@@ -532,15 +530,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Area_Performance">
-          <End Role="Performance" Type="Self.Performance" Multiplicity="1" />
-          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+        <Association Name="FK_Performance_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Performance" Type="Self.Performance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Performance">
-              <PropertyRef Name="IdPerformance" />
+            <Principal Role="Area">
+              <PropertyRef Name="IdArea" />
             </Principal>
-            <Dependent Role="Area">
-              <PropertyRef Name="IdPerformance" />
+            <Dependent Role="Performance">
+              <PropertyRef Name="IdArea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -646,9 +644,9 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK_Area_Performance" Association="Self.FK_Area_Performance">
-            <End Role="Performance" EntitySet="Performance" />
+          <AssociationSet Name="FK_Performance_Area" Association="Self.FK_Performance_Area">
             <End Role="Area" EntitySet="Area" />
+            <End Role="Performance" EntitySet="Performance" />
           </AssociationSet>
           <AssociationSet Name="FK_Artists_Specialty" Association="Self.FK_Artists_Specialty">
             <End Role="Specialty" EntitySet="Specialty" />
@@ -771,6 +769,7 @@
                 <ScalarProperty Name="DatePerformance" ColumnName="DatePerformance" />
                 <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
                 <ScalarProperty Name="IdArtists" ColumnName="IdArtists" />
+                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -841,9 +840,7 @@
             <EntityTypeMapping TypeName="DBModel.Visitors">
               <MappingFragment StoreEntitySet="Visitors">
                 <ScalarProperty Name="IdVisitors" ColumnName="IdVisitors" />
-                <ScalarProperty Name="FirstNameVisitors" ColumnName="FirstNameVisitors" />
-                <ScalarProperty Name="LastNameVisitors" ColumnName="LastNameVisitors" />
-                <ScalarProperty Name="MiddleNameVisitors" ColumnName="MiddleNameVisitors" />
+                <ScalarProperty Name="ComleteNameVisitors" ColumnName="ComleteNameVisitors" />
                 <ScalarProperty Name="EmailVisitors" ColumnName="EmailVisitors" />
                 <ScalarProperty Name="NumberPhoneVisitors" ColumnName="NumberPhoneVisitors" />
                 <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />

@@ -14,12 +14,19 @@ namespace OPGYaroMoll.DataFolder
     
     public partial class Area
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Area()
+        {
+            this.Performance = new HashSet<Performance>();
+        }
+    
         public int IdArea { get; set; }
         public string NameArea { get; set; }
         public int IdAddres { get; set; }
         public int IdPerformance { get; set; }
     
         public virtual Address Address { get; set; }
-        public virtual Performance Performance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Performance> Performance { get; set; }
     }
 }

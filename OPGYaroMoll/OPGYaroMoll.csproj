@@ -41,6 +41,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro.IconPacks.Material, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -70,6 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClassFolder\MBClass.cs" />
+    <Compile Include="ClassFolder\VariableClass.cs" />
     <Compile Include="DataFolder\Address.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -134,14 +141,47 @@
     <Compile Include="PageFolder\CashierFolder\ListCashierPage.xaml.cs">
       <DependentUpon>ListCashierPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\ManagerFolder\ListAreaPage.xaml.cs">
+      <DependentUpon>ListAreaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\ManagerFolder\ListArtistsPage.xaml.cs">
+      <DependentUpon>ListArtistsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\ManagerFolder\ListPerformancePage.xaml.cs">
+      <DependentUpon>ListPerformancePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowFolder\CashierFolder\AddTickersWindow.xaml.cs">
       <DependentUpon>AddTickersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowFolder\CashierFolder\EditTickersWindow.xaml.cs">
+      <DependentUpon>EditTickersWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFolder\CashierFolder\MenuCashierWindow.xaml.cs">
       <DependentUpon>MenuCashierWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\AreaFolder\AddAreaWindow.xaml.cs">
+      <DependentUpon>AddAreaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\AreaFolder\EditAreaWindow.xaml.cs">
+      <DependentUpon>EditAreaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\ArtistsFolder\AddArtistsWindow.xaml.cs">
+      <DependentUpon>AddArtistsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\ArtistsFolder\EditArtistsWindow.xaml.cs">
+      <DependentUpon>EditArtistsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\MenuManagerWindow.xaml.cs">
+      <DependentUpon>MenuManagerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\PerformanceFolder\AddPerformanceWindow.xaml.cs">
+      <DependentUpon>AddPerformanceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFolder\ManagerFolder\PerformanceFolder\EditPerformanceWindow.xaml.cs">
+      <DependentUpon>EditPerformanceWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +223,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\ManagerFolder\ListAreaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\ManagerFolder\ListArtistsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\ManagerFolder\ListPerformancePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceFolder\Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,12 +247,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\CashierFolder\EditTickersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowFolder\CashierFolder\MenuCashierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowFolder\ManagerFolder\AreaFolder\AddAreaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\AreaFolder\EditAreaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\ArtistsFolder\AddArtistsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\ArtistsFolder\EditArtistsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\MenuManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\PerformanceFolder\AddPerformanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowFolder\ManagerFolder\PerformanceFolder\EditPerformanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="ResourceFolder\ImageFolder\login.png" />
   </ItemGroup>
@@ -214,6 +297,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ResourceFolder\ImageFolder\LOGO.jpg" />
+    <Resource Include="ResourceFolder\ImageFolder\Exit.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Create.png" />
+    <Resource Include="ResourceFolder\ImageFolder\list.png" />
+    <Resource Include="ResourceFolder\ImageFolder\Search.png" />
+    <Resource Include="ResourceFolder\ImageFolder\close.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DataFolder\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -224,12 +315,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="ResourceFolder\ImageFolder\LOGO.jpg" />
-    <Resource Include="ResourceFolder\ImageFolder\Exit.png" />
-    <Resource Include="ResourceFolder\ImageFolder\Create.png" />
-    <Resource Include="ResourceFolder\ImageFolder\list.png" />
-    <Resource Include="ResourceFolder\ImageFolder\Search.png" />
-    <Resource Include="ResourceFolder\ImageFolder\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

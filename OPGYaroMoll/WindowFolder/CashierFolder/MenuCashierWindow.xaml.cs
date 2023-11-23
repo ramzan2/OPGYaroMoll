@@ -24,22 +24,38 @@ namespace OPGYaroMoll.WindowFolder.CashierFolder
         public MenuCashierWindow(DataFolder.User user)
         {
             InitializeComponent();
+            VariableClass.AddTickersBtn_Click2 = this;
+            UpdateList();
             DataContext = user;
             MainFrame.Navigate(new PageFolder.CashierFolder.ListCashierPage());
         }
 
         private void ListTickersBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             MainFrame.Navigate(new PageFolder.CashierFolder.ListCashierPage());
-            ListTickersBtn.Background = new SolidColorBrush(Colors.White);
-            AddTickersBtn.Background = new SolidColorBrush(Colors.Transparent);
+            ListTickersBtn.Visibility = Visibility.Hidden;
+            ListTickersBtnWhite.Visibility = Visibility.Visible;
+            AddTickersBtn.Visibility = Visibility.Visible;
+            AddTickersBtnWhite.Visibility = Visibility.Hidden;
         }
 
         private void AddTickersBtn_Click(object sender, RoutedEventArgs e)
         {
             new AddTickersWindow().Show();
-            AddTickersBtn.Background = new SolidColorBrush(Colors.White);
-            ListTickersBtn.Background = new SolidColorBrush(Colors.Transparent);
+            AddTickersBtn.Visibility = Visibility.Hidden;
+            AddTickersBtnWhite.Visibility = Visibility.Visible;
+            ListTickersBtn.Visibility = Visibility.Visible;
+            ListTickersBtnWhite.Visibility = Visibility.Hidden;
+        }
+
+        public void UpdateList()
+        {
+            MainFrame.Navigate(new PageFolder.CashierFolder.ListCashierPage());
+            ListTickersBtn.Visibility = Visibility.Hidden;
+            ListTickersBtnWhite.Visibility = Visibility.Visible;
+            AddTickersBtn.Visibility = Visibility.Visible;
+            AddTickersBtnWhite.Visibility = Visibility.Hidden;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

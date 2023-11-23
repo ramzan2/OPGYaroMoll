@@ -1,6 +1,7 @@
 ﻿using OPGYaroMoll.ClassFolder;
 using OPGYaroMoll.DataFolder;
 using OPGYaroMoll.WindowFolder.CashierFolder;
+using OPGYaroMoll.WindowFolder.ManagerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,10 @@ namespace OPGYaroMoll.WindowFolder
                                 new MenuCashierWindow(user).Show();
                                 Close();
                                 break;
+                            case 2:
+                                new MenuManagerWindow(user).Show();
+                                Close();
+                                break;
                         }
                     }
                 }
@@ -90,6 +95,11 @@ namespace OPGYaroMoll.WindowFolder
                 }
 
             }
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MBClass.ExitMB();
         }
     }
 }

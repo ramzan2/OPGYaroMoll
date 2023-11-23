@@ -15,9 +15,7 @@ namespace OPGYaroMoll.DataFolder
     public partial class Visitors
     {
         public int IdVisitors { get; set; }
-        public string FirstNameVisitors { get; set; }
-        public string LastNameVisitors { get; set; }
-        public string MiddleNameVisitors { get; set; }
+        public string ComleteNameVisitors { get; set; }
         public string EmailVisitors { get; set; }
         public string NumberPhoneVisitors { get; set; }
         public int IdTicket { get; set; }
